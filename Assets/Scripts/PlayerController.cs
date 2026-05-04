@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             moveDirection.x -= 1f;
+            isMovingRight = false;
+
         }
 
         if (Input.GetKey(KeyCode.RightArrow))
@@ -76,7 +78,6 @@ public class PlayerController : MonoBehaviour
         {
             UpdateJump();
         }
-        isMovingRight = false;
     }
 
     void StartJump()
