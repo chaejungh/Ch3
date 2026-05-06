@@ -67,4 +67,5 @@ public class BackgroundController : MonoBehaviour
         return targetCamera.ViewportToWorldPoint(new Vector3(0f, 0.5f, distance)).x;
     }
     
+    
 }
