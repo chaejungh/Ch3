@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public RuntimeAnimatorController idleController;
     public RuntimeAnimatorController jumpController;
     public RuntimeAnimatorController runController;
+    public RuntimeAnimatorController crouchController;
     
     private  Animator animator;
     
@@ -33,41 +34,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Vector2 moveDirection = Vector2.zero;
-
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            moveDirection.x -= 1f;
-            isMovingRight = false;
-
-        }
-
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            moveDirection.x += 1f;
-            isMovingRight = true;
-        }
         
-        //이동방향이 바뀌면 스프라이트 뒤집기
-        if (moveDirection.x > 0f)
-        {
-            spriteRenderer.flipX = false;//  오른쪽 바라봄 
-        }
-        else if(moveDirection.x < 0f)
-        {
-            spriteRenderer.flipX = true;// 왼쪽 바라봄
-        }
-
-        if (moveDirection.x != 0f)
-        {
-            animator.runtimeAnimatorController = runController;
-        }
-        else
-        {
-            animator.runtimeAnimatorController = idleController;
-        }
-        
-        moveDirection = moveDirection.normalized;
-        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
@@ -78,6 +45,21 @@ public class PlayerController : MonoBehaviour
         {
             UpdateJump();
         }
+        else
+        {
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                animator.runtimeAnimatorController = crouchController;
+            }
+            else
+            {
+                animator.runtimeAnimatorController = idleController;
+            }
+        }
+        
+        moveDirection = moveDirection.normalized;
+        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+        
     }
 
     void StartJump()

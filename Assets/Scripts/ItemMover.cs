@@ -8,7 +8,10 @@ public class ItemMover : MonoBehaviour
     [HideInInspector]
     public Camera targetCamera;
     
+    [HideInInspector]
     public bool isObstacle = false;
+    
+    public AudioClip collisionSound;//충돌 사운드
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,7 +35,14 @@ public class ItemMover : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        GameManager.Instance?.AddScore();
+        if (isObstacle)
+            GameManager.Instance?.TakeDamage();
+        else
+            GameManager.Instance?.AddScore();
+
+        if (collisionSound != null)
+            AudioSource.PlayClipAtPoint(collisionSound, transform.position);
+        
         Destroy(gameObject);
     }
     

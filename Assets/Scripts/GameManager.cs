@@ -1,5 +1,9 @@
+using System;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
+using Random = UnityEngine.Random;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -28,6 +32,9 @@ public class GameManager : MonoBehaviour
     TextMeshProUGUI scoreText;
     
     [SerializeField]
+    TextMeshProUGUI distanceText;
+    
+    [SerializeField]
     float itemSpawnInterval = 2f;
     
     [SerializeField]
@@ -42,6 +49,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public float scrollSpeed = 10f;
     
+    [Header("Speed Scale")]
+    [SerializeField]
+    float speedIncreaseRate = 0.5f;
+    
+    [SerializeField]
+    float maxScrollSpeed = 30f;
+    
     [SerializeField]
     public Camera targetCamera;
     
@@ -49,23 +63,37 @@ public class GameManager : MonoBehaviour
     int itemSpawnCount;
     
     [SerializeField]
-    int maxHp = 3;
+    const int MAXHP = 3;
     int hp;
     bool isGameOver = false;
     
     [SerializeField]
     int itemsPerObstacle=10;
     
+    [SerializeField]
+    GameObject[] hpSprite;
+    
+    float distance =0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        hp = MAXHP;
+        // hpSprite=new GameObject[MAXHP];
     }
 
     // Update is called once per frame
     void Update()
     {
         if(isGameOver) return;
+        
+        scrollSpeed = Mathf.Min(scrollSpeed + speedIncreaseRate * Time.deltaTime, maxScrollSpeed);
+        Debug.Log($"Scroll Speed: {scrollSpeed}");
+        
+        distance += scrollSpeed * Time.deltaTime;
+        if (distanceText != null)
+        {
+            distanceText.text = $"Distance:{(int)distance}M";
+        }
         spawnTimer += Time.deltaTime;
         if (spawnTimer < itemSpawnInterval)
             return;
@@ -83,13 +111,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+ 
     public void TakeDamage()
     {
         if (isGameOver) return;
 
         hp--;
+        hpSprite[hp].SetActive(false);
+        
         Debug.Log($"HP: {hp}");
-
+        
         if (hp <= 0)
             GameOver();
     }
