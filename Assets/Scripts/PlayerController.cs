@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public RuntimeAnimatorController runController;
     public RuntimeAnimatorController crouchController;
     
+    private PolygonCollider2D polygonCollider;
+
     private  Animator animator;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        polygonCollider = GetComponent<PolygonCollider2D>(); // 추가
         animator.runtimeAnimatorController = idleController;
     }
 
@@ -50,10 +53,14 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(KeyCode.DownArrow))
             {
                 animator.runtimeAnimatorController = crouchController;
+                Destroy(polygonCollider); // 이전 콜라이더 데이터 잔상 제거를 위해 재배치하는 것이 안전합니다
+                polygonCollider = gameObject.AddComponent<PolygonCollider2D>();
             }
             else
             {
                 animator.runtimeAnimatorController = idleController;
+                Destroy(polygonCollider);
+                polygonCollider = gameObject.AddComponent<PolygonCollider2D>();
             }
         }
         

@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="35a41b14-1696-4a73-9346-5a7b408df2c5" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Ch3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ch3/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/item.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/item.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/rock.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/rock.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BackgroundController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BackgroundController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ItemMover.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" afterDir="false" />
@@ -21,6 +18,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BackgroundController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Platform.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -91,6 +89,7 @@
       <workItem from="1778039648835" duration="4154000" />
       <workItem from="1778046705156" duration="665000" />
       <workItem from="1778472244621" duration="4146000" />
+      <workItem from="1778645141114" duration="4043000" />
     </task>
     <servers />
   </component>
